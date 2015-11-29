@@ -1,0 +1,11 @@
+- name: install elasticsearch
+  sudo: yes
+  yum:
+    name: "https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/{{ elasticsearch.version }}/elasticsearch-{{ elasticsearch.version }}.rpm"
+    state: present
+
+- name: service start
+  sudo: yes
+  service:
+    name: elasticsearch
+    state: started

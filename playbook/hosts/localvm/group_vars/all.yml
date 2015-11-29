@@ -1,0 +1,7 @@
+stage: localvm
+
+java:
+  version: 1.8.0
+
+elasticsearch:
+  version: 2.1.0

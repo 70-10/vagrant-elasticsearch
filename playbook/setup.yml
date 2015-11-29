@@ -1,0 +1,8 @@
+---
+  - hosts: localvm
+    gather_facts: no
+    tags: localvm
+    roles:
+      - ansible
+      - middleware/java
+      - middleware/elasticsearch
