@@ -16,4 +16,4 @@ if ! [ `which ansible` ]; then
 fi
 
 cd /playbook
-ansible-playbook -i hosts/localvm -t localvm setup.yml
+ansible-playbook -i hosts/localvm -t fluentd setup.yml

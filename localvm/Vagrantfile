@@ -6,15 +6,19 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  # CentOS 6.7
-  config.vm.box = "bento/centos-6.7"
+  config.vm.define "elasticsearch" do |elasticsearch|
+    elasticsearch.vm.box = "bento/centos-6.7"
+    elasticsearch.vm.network :private_network, ip: "172.17.1.101"
+    elasticsearch.vm.hostname = "elasticsearch.local"
+    elasticsearch.vm.provision :shell, :path => "provision/elasticsearch.sh"
+  end
 
-  # CentOS 7
-  # config.vm.box = "bento/centos-7.1"
-
-  # network
-  config.vm.network "private_network", ip:"172.17.1.103"
-  config.vm.hostname="elasticsearch.local"
+  config.vm.define "fluentd" do |fluentd|
+    fluentd.vm.box = "bento/centos-6.7"
+    fluentd.vm.network :private_network, ip: "172.17.1.102"
+    fluentd.vm.hostname = "fluentd.local"
+    fluentd.vm.provision :shell, :path => "provision/fluentd.sh"
+  end
 
   # synced_folder
   config.vm.synced_folder "./", "/vagrant", disabled: true
@@ -24,6 +28,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.provider "virtualbox" do |vb|
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
   # end
-
-  config.vm.provision :shell, :path => "provision.sh"
 end

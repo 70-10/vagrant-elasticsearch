@@ -1,0 +1,5 @@
+- name: install apache
+  sudo: yes
+  yum:
+    name: httpd
+    state: present

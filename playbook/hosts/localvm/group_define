@@ -1,6 +1,9 @@
-[localvm]
+[elasticsearch]
 localhost
 
-[localvm:vars]
+[fluentd]
+localhost
+
+[all:vars]
 ansible_connection=local
 ansible_ssh_user=vagrant

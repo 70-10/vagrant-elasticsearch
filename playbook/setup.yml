@@ -1,8 +1,14 @@
----
-  - hosts: localvm
-    gather_facts: no
-    tags: localvm
-    roles:
-      - ansible
-      - middleware/java
-      - middleware/elasticsearch
+- hosts: elasticsearch
+  gather_facts: no
+  tags: elasticsearch
+  roles:
+    - ansible
+    - middleware/java
+    - middleware/elasticsearch
+
+- hosts: fluentd
+  gather_facts: no
+  tags: fluentd
+  roles:
+    - ansible
+    - middleware/apache
